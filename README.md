@@ -11,7 +11,7 @@
 rails-docker_web
 
 ### コンテナ起動(compose)
-`docker-compose up -d`
+`docker-compose up -d [--build]`
 - localhost:3000でEXPOSE
 
 ### コンテナ起動(isolate)
