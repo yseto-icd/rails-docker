@@ -4,7 +4,6 @@
 ### お断り
 - 説明用にアンチパターンをいくつか使ってます
   - postgresにPASSWORDなしでログインできる設定
-  - DBの永続データをGit管理内に入れる
 
 ### イメージビルド
 `docker-compose build`
@@ -12,7 +11,9 @@ rails-docker_web
 
 ### コンテナ起動(compose)
 `docker-compose up -d [--build]`
+`docker-compose run web rake db:create`
 - localhost:3000でEXPOSE
+  - レスポンス遅かったりしたらwebコンテナの再起動とか必要かも
 
 ### コンテナ起動(isolate)
 `docker run -it -p 3030:3000 rails-docker_web bash`
