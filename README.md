@@ -1,24 +1,27 @@
 # README
+## Docker説明用リポジトリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### お断り
+- 説明用にアンチパターンをいくつか使ってます
+  - postgresにPASSWORDなしでログインできる設定
+  - DBの永続データをGit管理内に入れる
 
-Things you may want to cover:
+### イメージビルド
+`docker-compose build`
+rails-docker_web
 
-* Ruby version
+### コンテナ起動(compose)
+`docker-compose up -d`
+- localhost:3000でEXPOSE
 
-* System dependencies
+### コンテナ起動(isolate)
+`docker run -it -p 3030:3000 rails-docker_web bash`
+- bashで`bundle exec rails s`
+- localhost:3030でEXPOSE(エラーになるはず)
 
-* Configuration
+`docker run --name db -p 5431:5432 -e POSTGRES_HOST_AUTH_METHOD=trust postgres`
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`docker run --link=db -it -p 3030:3000 rails-docker_web bash`
+- bashで`bundle exec rails db:create`
+- bashで`bundle exec rails s -p 3000 -b '0.0.0.0'`
+- localhost:3030でEXPOSE
