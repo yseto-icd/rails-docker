@@ -1,8 +1,12 @@
 version: '3'
 services:
   db:
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
     environment: 
       - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
     image: postgres
   web:
     build: .
