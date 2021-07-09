@@ -10,8 +10,8 @@
 rails-docker_web
 
 ### コンテナ起動(compose)
-`docker-compose up -d [--build]`
-`docker-compose run web rake db:create`
+`docker-compose up -d [--build]`  
+`docker-compose run web rails db:create`
 - localhost:3000でEXPOSE
   - レスポンス遅かったりしたらwebコンテナの再起動とか必要かも
 
